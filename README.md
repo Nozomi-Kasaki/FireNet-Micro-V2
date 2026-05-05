@@ -13,9 +13,50 @@ The project includes training, parameter counting, weight-jitter search, model e
 ## Highlights
 
 - Lightweight custom model: `FireNetMicroV2`
+- Only `0.26M` trainable parameters (`263,203` total)
 - Standard PyTorch training and validation pipeline
 - Weight-jitter search for checkpoint exploration
 - Simple inference script for unlabeled image folders
+
+## Model Size
+
+One of the main goals of this project is to keep the model lightweight while maintaining competitive performance for fire image classification.
+
+Running:
+
+```bash
+python count_params.py
+```
+
+produces the following parameter breakdown:
+
+```text
+--- Model Parameter Breakdown ---
++--------------+------------+
+|   Modules    | Parameters |
++--------------+------------+
+|     stem     |    928     |
+| stage1_conv1 |   6,960    |
+|    stage2    |   21,096   |
+|    stage3    |   87,288   |
+|    stage4    |  133,872   |
+|     head     |   13,059   |
++--------------+------------+
+
+Parameter count completed:
+==========================================
+Total Parameters:     263,203  (0.26 M)
+Trainable Parameters: 263,203  (0.26 M)
+==========================================
+```
+
+This makes `FireNetMicroV2` a compact model that is easy to analyze, train, and deploy.
+
+## Kaggle Result
+
+The final competition performance is shown in the leaderboard screenshot below:
+
+![Kaggle leaderboard result](assets/kaggle-leaderboard.png)
 
 ## Project Structure
 
